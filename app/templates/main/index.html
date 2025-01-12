@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Welcome to Private File Sharing</h1>
+    <p class="lead">A secure way to share your files with private access keys</p>
+    
+    {% if not current_user.is_authenticated %}
+    <div class="mt-4">
+        <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg mx-2">Login</a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-outline-primary btn-lg mx-2">Register</a>
+    </div>
+    {% else %}
+    <div class="mt-4">
+        <a href="{{ url_for('files.upload_file') }}" class="btn btn-primary btn-lg mx-2">Upload Files</a>
+        <a href="{{ url_for('files.file_list') }}" class="btn btn-outline-primary btn-lg mx-2">View My Files</a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <h3>Secure Storage</h3>
+        <p>Your files are stored securely with enterprise-grade encryption and protection.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Private Access</h3>
+        <p>Each file gets a unique private key - only share with those you trust.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Easy Sharing</h3>
+        <p>Simple interface to upload and share files with anyone, anywhere.</p>
+    </div>
+</div>
+{% endblock %}
